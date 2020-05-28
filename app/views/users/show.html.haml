@@ -1,0 +1,8 @@
+%h1 Profile
+%h3= @user.email
+= render "relationships/follow_button", user: @user
+- if @user == current_user
+  %ul
+    - @user.followers.each do |follower|
+      %li= link_to follower.email, follower
+= link_to  "Back", root_path
