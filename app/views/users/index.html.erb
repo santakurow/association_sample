@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <h1>User all</h1>
+  <%= link_to "Profile", "/users/#{current_user.id}" %>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  <hr/>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @users.any? %>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.email, user %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h1>Home</h1>
+  <%= link_to "Signup", new_user_registration_path %>
+  <%= link_to "Login", new_user_session_path %>
+<% end %>
